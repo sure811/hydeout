@@ -1,7 +1,12 @@
 ---
 layout: post
-title: `[LeetCode]` Task Scheduler
-tags: LeetCode Medium Array
+title: [LeetCode] Task Scheduler
+categories:
+    - LeetCode
+tags:
+    - LeetCode
+    - Medium
+    - Array
 ---
 
 ### Question Definition
