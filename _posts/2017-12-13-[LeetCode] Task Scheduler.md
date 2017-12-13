@@ -1,6 +1,6 @@
 ---
 layout: post
-title: \[LeetCode] Task Scheduler
+title: `[LeetCode] Task Scheduler`
 tags: LeetCode Medium Array
 ---
 
@@ -15,14 +15,14 @@ You need to return the least number of intervals the CPU will take to finish all
 **Example 1:**
 
 <div>
-Input: tasks = \["A","A","A","B","B","B"], n = 2
+Input: tasks = ["A","A","A","B","B","B"], n = 2
 Output: 8
 Explanation: A -> B -> idle -> A -> B -> idle -> A -> B.
 </div>
 
 **Note:**
-The number of tasks is in the range \[1, 10000].
-The integer n is in the range \[0, 100].
+The number of tasks is in the range `[1, 10000]`.
+The integer n is in the range `[0, 100]`.
 
 ### Java Solution
 ```java
