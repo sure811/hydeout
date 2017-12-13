@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [LeetCode] Best Time to Buy and Sell Stock with Transaction Fee
+title: `[LeetCode]` Best Time to Buy and Sell Stock with Transaction Fee
 categories:
     - LeetCode
 tags:

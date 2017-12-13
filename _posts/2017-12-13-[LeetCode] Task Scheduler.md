@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [LeetCode] Task Scheduler
+title: `[LeetCode]` Task Scheduler
 categories:
     - LeetCode
 tags:
