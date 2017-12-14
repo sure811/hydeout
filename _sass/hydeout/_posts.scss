@@ -22,11 +22,11 @@ article + *, .post-body ~ section {
 }
 
 // Blog post or page title
-//.page-title,
-//.post-title,
-//.post-title a {
-//  color: $heading-color;
-//}
+.page-title,
+.post-title,
+.post-title a {
+  color: $heading-color;
+}
 
 .post-categories,
 .post-categories a {
