@@ -1,6 +1,6 @@
 ---
 layout: post
-title: `[LeetCode]` Find Pivot Index
+title: LeetCode - Find Pivot Index
 categories:
     - LeetCode
 tags:
