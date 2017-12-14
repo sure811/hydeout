@@ -22,6 +22,7 @@ For each call to the method MyCalendar.book, return true if the event can be add
 
 Your class will be called like this: MyCalendar cal = new MyCalendar(); MyCalendar.book(start, end)
 <!--more-->
+
 **Example 1:**
 ```
 MyCalendar();
