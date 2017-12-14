@@ -7,6 +7,7 @@ tags:
     - LeetCode
     - Medium
     - Array
+excerpt_separator: "<!--more-->"
 ---
 
 ### Question Definition
@@ -16,7 +17,7 @@ Given a char array representing tasks CPU need to do. It contains capital letter
 However, there is a non-negative cooling interval n that means between two same tasks, there must be at least n intervals that CPU are doing different tasks or just be idle.
 
 You need to return the least number of intervals the CPU will take to finish all the given tasks.
-
+<!--more-->
 **Example 1:**
 
 ```
