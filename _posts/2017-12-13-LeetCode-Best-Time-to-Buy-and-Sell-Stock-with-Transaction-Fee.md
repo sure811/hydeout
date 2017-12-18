@@ -49,15 +49,15 @@ The total profit is ((8 - 1) - 2) + ((9 - 4) - 2) = 8.
 ```
 ### Java Solution
 ```java
-    public int maxProfit(int[] prices, int fee) {
-        int[] hold = new int[prices.length + 1];
-        int[] noHold = new int[prices.length + 1];
-        hold[0] = Integer.MIN_VALUE;
+public int maxProfit(int[] prices, int fee) {
+    int[] hold = new int[prices.length + 1];
+    int[] noHold = new int[prices.length + 1];
+    hold[0] = Integer.MIN_VALUE;
 
-        for(int i = 1; i <= prices.length; i++){
-            hold[i] = Math.max(hold[i - 1], noHold[i - 1] - prices[i - 1] - fee);
-            noHold[i] = Math.max(noHold[i - 1], hold[i - 1] + prices[i - 1]);
-        }
-        return noHold[prices.length];
+    for(int i = 1; i <= prices.length; i++){
+        hold[i] = Math.max(hold[i - 1], noHold[i - 1] - prices[i - 1] - fee);
+        noHold[i] = Math.max(noHold[i - 1], hold[i - 1] + prices[i - 1]);
     }
+    return noHold[prices.length];
+}
 ```

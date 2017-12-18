@@ -31,36 +31,36 @@ Write a function to compute the next state (after one update) of the board given
 
 ### Java Solution
 ```java
-    public void gameOfLife(int[][] board) {
-        for(int i = 0; i < board.length; i++){
-            for(int j = 0; j < board[i].length; j++){
-                int sum = 0;
-                sum += (i == 0 ? 0 : board[i - 1][j] % 2);
-                sum += (j == 0 ? 0 : board[i][j - 1] % 2);
-                sum += (i == 0 || j == 0 ? 0 : board[i - 1][j - 1] % 2);
-                sum += (i == board.length - 1 ? 0 : board[i + 1][j] % 2);
-                sum += (j == board[i].length - 1 ? 0 : board[i][j + 1] % 2);
-                sum += (i == board.length - 1 || j == board[i].length - 1 ? 0 : board[i + 1][j + 1] % 2);
-                sum += (i == 0 || j == board[i].length - 1 ? 0 : board[i - 1][j + 1] % 2);
-                sum += (i == board.length - 1 || j == 0 ? 0 : board[i + 1][j - 1] % 2);
-                if(board[i][j] == 1){
-                    if(sum < 2)
-                        board[i][j] = 1;
-                    else if(sum == 2 || sum == 3)
-                        board[i][j] = 3;
-                    else if(sum > 3)
-                        board[i][j] = 1;
-                }else{
-                    if(sum == 3)
-                        board[i][j] = 2;
-                }
-            }
-        }
-
-        for(int i = 0; i < board.length; i++){
-            for(int j = 0; j < board[i].length; j++){
-                board[i][j] = board[i][j] / 2;
+public void gameOfLife(int[][] board) {
+    for(int i = 0; i < board.length; i++){
+        for(int j = 0; j < board[i].length; j++){
+            int sum = 0;
+            sum += (i == 0 ? 0 : board[i - 1][j] % 2);
+            sum += (j == 0 ? 0 : board[i][j - 1] % 2);
+            sum += (i == 0 || j == 0 ? 0 : board[i - 1][j - 1] % 2);
+            sum += (i == board.length - 1 ? 0 : board[i + 1][j] % 2);
+            sum += (j == board[i].length - 1 ? 0 : board[i][j + 1] % 2);
+            sum += (i == board.length - 1 || j == board[i].length - 1 ? 0 : board[i + 1][j + 1] % 2);
+            sum += (i == 0 || j == board[i].length - 1 ? 0 : board[i - 1][j + 1] % 2);
+            sum += (i == board.length - 1 || j == 0 ? 0 : board[i + 1][j - 1] % 2);
+            if(board[i][j] == 1){
+                if(sum < 2)
+                    board[i][j] = 1;
+                else if(sum == 2 || sum == 3)
+                    board[i][j] = 3;
+                else if(sum > 3)
+                    board[i][j] = 1;
+            }else{
+                if(sum == 3)
+                    board[i][j] = 2;
             }
         }
     }
+
+    for(int i = 0; i < board.length; i++){
+        for(int j = 0; j < board[i].length; j++){
+            board[i][j] = board[i][j] / 2;
+        }
+    }
+}
 ```

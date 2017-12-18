@@ -19,23 +19,23 @@ Given n non-negative integers a1, a2, ..., an, where each represents a point at 
 
 ### Java Solution
 ```java
-    public int maxArea(int[] height) {
-        int max = 0;
-        int left = 0;
-        int right = height.length - 1;
-        while(left < right){
-            if(height[left] < height[right]){
-                int area = (right - left) * height[left];
-                if(area > max)
-                    max = area;
-                left++;
-            } else {
-                int area = (right - left) * height[right];
-                if(area > max)
-                    max = area;
-                right--;
-            }
+public int maxArea(int[] height) {
+    int max = 0;
+    int left = 0;
+    int right = height.length - 1;
+    while(left < right){
+        if(height[left] < height[right]){
+            int area = (right - left) * height[left];
+            if(area > max)
+                max = area;
+            left++;
+        } else {
+            int area = (right - left) * height[right];
+            if(area > max)
+                max = area;
+            right--;
         }
-        return max;
     }
+    return max;
+}
 ```

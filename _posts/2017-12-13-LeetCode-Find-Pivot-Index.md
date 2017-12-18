@@ -45,18 +45,18 @@ There is no index that satisfies the conditions in the problem statement.
 
 ### Java Solution
 ```java
-    public int pivotIndex(int[] nums) {
-        if(nums.length == 0)
-            return -1;
-        long sum = 0;
-        for (int n : nums)
-            sum += n;
-        int pre = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if(pre == sum - nums[i] - pre)
-                return i;
-            pre += nums[i];
-        }
+public int pivotIndex(int[] nums) {
+    if(nums.length == 0)
         return -1;
+    long sum = 0;
+    for (int n : nums)
+        sum += n;
+    int pre = 0;
+    for (int i = 0; i < nums.length; i++) {
+        if(pre == sum - nums[i] - pre)
+            return i;
+        pre += nums[i];
     }
+    return -1;
+}
 ```

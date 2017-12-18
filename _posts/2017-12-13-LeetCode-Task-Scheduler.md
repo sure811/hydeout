@@ -33,26 +33,26 @@ The integer n is in the range `[0, 100]`.
 
 ### Java Solution
 ```java
-    public int leastInterval(char[] tasks, int n) {
-        if (tasks == null || n < 0)
-            return 0;
+public int leastInterval(char[] tasks, int n) {
+    if (tasks == null || n < 0)
+        return 0;
 
-        if (n == 0)
-            return tasks.length; // If there is no intervals, just execute all tasks one by one.
+    if (n == 0)
+        return tasks.length; // If there is no intervals, just execute all tasks one by one.
 
-        int[] count = new int[26];
+    int[] count = new int[26];
 
-        int maxCount = 0;
-        for (char task : tasks) {
-            count[task - 'A']++;
-            if (count[task - 'A'] > maxCount)
-                maxCount = count[task - 'A'];
-        }
-        int sameMaxCount = 0;
-        for (int cnt : count) {
-            if (cnt == maxCount)
-                sameMaxCount++;
-        }
-        return Math.max(tasks.length, (maxCount - 1) * (n + 1) + sameMaxCount);
+    int maxCount = 0;
+    for (char task : tasks) {
+        count[task - 'A']++;
+        if (count[task - 'A'] > maxCount)
+            maxCount = count[task - 'A'];
     }
+    int sameMaxCount = 0;
+    for (int cnt : count) {
+        if (cnt == maxCount)
+            sameMaxCount++;
+    }
+    return Math.max(tasks.length, (maxCount - 1) * (n + 1) + sameMaxCount);
+}
 ```

@@ -32,31 +32,31 @@ Consider the following matrix:
 Given target = 3, return true.
 ### Java Solution
 ```java
-    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        Arrays.sort(candidates);
-        boolean[] loc = new boolean[candidates.length];
-        List<List<Integer>> result = new LinkedList<>();
-        combinationSum2Helper(candidates, loc, 0, target, result);
-        return result;
-    }
+public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+    Arrays.sort(candidates);
+    boolean[] loc = new boolean[candidates.length];
+    List<List<Integer>> result = new LinkedList<>();
+    combinationSum2Helper(candidates, loc, 0, target, result);
+    return result;
+}
 
-    public void combinationSum2Helper(int[] candidates, boolean[] loc, int start, int target, List<List<Integer>> result) {
-        if(target == 0){
-            List<Integer> temp = new LinkedList<>();
-            for(int i = 0; i < loc.length; i++)
-                if(loc[i])
-                    temp.add(candidates[i]);
-            result.add(temp);
-            return;
-        }
-        for(int i = start; i < candidates.length; i++){
-            if(candidates[i] > target)
-                break;
-            if(loc[i] || (i != start && candidates[i] == candidates[i - 1]))
-                continue;
-            loc[i] = true;
-            combinationSum2Helper(candidates, loc, i + 1, target - candidates[i], result);
-            loc[i] = false;
-        }
+public void combinationSum2Helper(int[] candidates, boolean[] loc, int start, int target, List<List<Integer>> result) {
+    if(target == 0){
+        List<Integer> temp = new LinkedList<>();
+        for(int i = 0; i < loc.length; i++)
+            if(loc[i])
+                temp.add(candidates[i]);
+        result.add(temp);
+        return;
     }
+    for(int i = start; i < candidates.length; i++){
+        if(candidates[i] > target)
+            break;
+        if(loc[i] || (i != start && candidates[i] == candidates[i - 1]))
+            continue;
+        loc[i] = true;
+        combinationSum2Helper(candidates, loc, i + 1, target - candidates[i], result);
+        loc[i] = false;
+    }
+}
 ```
