@@ -28,4 +28,31 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 
 ### Java Solution
 ```java
+public void nextPermutation(int[] nums) {
+    if(nums.length <= 1)
+        return;
+    int start = nums.length - 2;
+    while(start >= 0 && nums[start] >= nums[start + 1])
+        start--;
+    if(start > -1){
+        int end = nums.length - 1;
+        while(end > start && nums[end] <= nums[start])
+            end--;
+        int temp = nums[start];
+        nums[start] = nums[end];
+        nums[end] = temp;
+
+    }
+    revert(nums, start + 1, nums.length - 1);
+}
+
+private void revert(int[] nums, int start, int end){
+    while(start < end){
+        int temp = nums[start];
+        nums[start] = nums[end];
+        nums[end] = temp;
+        start++;
+        end--;
+    }
+}
 ```

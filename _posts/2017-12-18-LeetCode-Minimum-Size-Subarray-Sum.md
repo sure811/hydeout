@@ -7,6 +7,8 @@ tags:
     - LeetCode
     - Medium
     - Array
+    - Binary Search
+    - Two Points
 excerpt_separator: "<!--more-->"
 ---
 
