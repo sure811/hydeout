@@ -31,4 +31,27 @@ The boundaries of each input argument are 1 <= left <= right <= 10000.
 
 ### Java Solution
 ```java
+public List<Integer> selfDividingNumbers(int left, int right) {
+    List<Integer> result = new LinkedList<>();
+    for(int i = left; i <= right; i++){
+        if(i % 10 == 0)
+            continue;
+        if(i < 10){
+            result.add(i);
+            continue;
+        }
+        boolean divided = true;
+        int num = i;
+        while(num > 0){
+            if(num % 10 == 0 || i % (num % 10) != 0){
+                divided = false;
+                break;
+            }
+            num = num / 10;
+        }
+        if(divided)
+            result.add(i);
+    }
+    return result;
+}
 ```
