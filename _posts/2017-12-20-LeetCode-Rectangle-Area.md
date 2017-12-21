@@ -13,6 +13,7 @@ excerpt_separator: "<!--more-->"
 ### Question Definition
 
 Given an array of integers A and let n to be its length.
+<!--more-->
 
 Assume Bk to be an array obtained by rotating the array A k positions clock-wise, we define a "rotation function" F on A as follow:
 
