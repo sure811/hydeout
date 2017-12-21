@@ -30,4 +30,23 @@ Given n and k, return the kth permutation sequence.
 
 ### Java Solution
 ```java
+public String getPermutation(int n, int k) {
+    String res = "";
+    int[] f = new int[n];
+    f[0] = 1;
+    List<String> nums = new LinkedList<>();
+    for (int i = 1; i < n; ++i){
+        f[i] = f[i - 1] * i;
+        nums.add(Integer.toString(i));
+    }
+    nums.add(Integer.toString(n));
+    --k;
+    for (int i = n; i >= 1; --i) {
+        int j = k / f[i - 1];
+        k %= f[i - 1];
+        res += nums.get(j);
+        nums.remove(j);
+    }
+    return res;
+}
 ```
