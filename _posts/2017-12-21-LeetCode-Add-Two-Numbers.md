@@ -25,4 +25,81 @@ Explanation: 342 + 465 = 807.
 ```
 ### Java Solution
 ```java
+public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    if(l1 == null) return l2;
+    if(l2 == null) return l1;
+
+    ListNode head = null;
+    ListNode tail = null;
+    boolean acc = false;
+    while(l1 != null && l2 != null){
+        System.out.println(l1.val + ":" + l2.val);
+        int val = l1.val + l2.val;
+        if(acc)
+            val++;
+        if(val > 9){
+            acc = true;
+            val = val % 10;
+        }else
+            acc = false;
+
+        ListNode temp = new ListNode(val);
+        if(head == null){
+            head = temp;
+            tail = temp;
+        }
+        else{
+            tail.next = temp;
+            tail = temp;
+        }
+        l1 = l1.next;
+        l2 = l2.next;
+    }
+    while(l1 != null){
+        int val = l1.val;
+        if(acc)
+            val++;
+        if(val > 9){
+            acc = true;
+            val = val % 10;
+        }else
+            acc = false;
+        ListNode temp = new ListNode(val);
+        if(head == null){
+            head = temp;
+            tail = temp;
+        }
+        else{
+            tail.next = temp;
+            tail = temp;
+        }
+        l1 = l1.next;
+    }
+
+    while(l2 != null){
+        int val = l2.val;
+        if(acc)
+            val++;
+        if(val > 9){
+            acc = true;
+            val = val % 10;
+        }else
+            acc = false;
+        ListNode temp = new ListNode(val);
+        if(head == null){
+            head = temp;
+            tail = temp;
+        }
+        else{
+            tail.next = temp;
+            tail = temp;
+        }
+        l2 = l2.next;
+    }
+    if(acc){
+        ListNode temp = new ListNode(1);
+        tail.next = temp;
+    }
+    return head;
+}
 ```
