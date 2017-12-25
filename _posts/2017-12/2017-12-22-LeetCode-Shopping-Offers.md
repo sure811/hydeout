@@ -21,6 +21,7 @@ You are given the each item's price, a set of special offers, and the number we 
 Each special offer is represented in the form of an array, the last number represents the price you need to pay for this special offer, other numbers represents how many specific items you could get if you buy this offer.
 
 You could use any of special offers as many times as you want.
+<!--more-->
 
 **Example 1:**
 ```
