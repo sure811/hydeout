@@ -44,4 +44,23 @@ If you notice carefully in the flattened tree, each node's right child points to
 
 ### Java Solution
 ```java
+public void flatten(TreeNode root) {
+    flattenHelper(root, null);
+}
+
+private TreeNode flattenHelper(TreeNode root, TreeNode pre) {
+    if(root == null)
+        return null;
+    if(pre != null){
+        pre.left = null;
+        pre.right = root;
+    }
+    TreeNode right = root.right;
+    pre = root;
+    if(root.left != null)
+        pre = flattenHelper(root.left, root);
+    if(right != null)
+        pre = flattenHelper(right, pre);
+    return pre;
+}
 ```
