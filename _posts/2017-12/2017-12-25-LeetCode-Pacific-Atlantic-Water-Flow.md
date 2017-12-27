@@ -46,6 +46,7 @@ public List<int[]> pacificAtlantic(int[][] matrix) {
     if(matrix == null || matrix.length == 0 || matrix[0].length == 0){
         return res;
     }
+
     int n = matrix.length, m = matrix[0].length;
     boolean[][]pacific = new boolean[n][m];
     boolean[][]atlantic = new boolean[n][m];
@@ -71,7 +72,7 @@ public void dfs(int[][]matrix, boolean[][]visited, int height, int x, int y){
     if(x<0 || x>=n || y<0 || y>=m || visited[x][y] || matrix[x][y] < height)
         return;
     visited[x][y] = true;
-    for(int[]d:dir){
+    for(int[] d:dir){
         dfs(matrix, visited, matrix[x][y], x+d[0], y+d[1]);
     }
 }
