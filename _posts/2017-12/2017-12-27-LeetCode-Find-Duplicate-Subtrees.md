@@ -40,5 +40,30 @@ Therefore, you need to return above trees' root in the form of a list.
 
 ### Java Solution
 ```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
+        List<TreeNode> result = new LinkedList<>();
+        Map<String, Integer> map = new HashMap<>();
+        helper(root, map, result);
+        return result;
+    }
 
+    private String helper(TreeNode node, Map<String, Integer>map, List<TreeNode> result) {
+        if (node == null) return "#";
+        String str = Integer.toString(node.val) + "," + helper(node.left, map, result) + "," + helper(node.right, map, result);
+        if (map.containsKey(str) && map.get(str) == 1) result.add(node);
+        map.putIfAbsent(str, 0);
+        map.put(str, map.get(str) + 1);
+        return str;
+    }
+}
 ```
