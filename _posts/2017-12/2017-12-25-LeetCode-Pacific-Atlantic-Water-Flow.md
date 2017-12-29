@@ -41,39 +41,45 @@ Return:
 ```
 ### Java Solution
 ```java
+static int[] dx = {-1,0,0,1};
+static int[] dy = {0,1,-1,0};
 public List<int[]> pacificAtlantic(int[][] matrix) {
-    List<int[]> res = new LinkedList<>();
-    if(matrix == null || matrix.length == 0 || matrix[0].length == 0){
-        return res;
+    List<int[]> res = new ArrayList<>();
+    if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return res;
+    boolean[][] pacific = new boolean[matrix.length][matrix[0].length];
+    boolean[][] atlantic = new boolean[matrix.length][matrix[0].length];
+    for (int i = 0; i < matrix.length; i++){
+        pacific[i][0] = true;
+        atlantic[i][matrix[0].length-1] = true;
     }
-
-    int n = matrix.length, m = matrix[0].length;
-    boolean[][] pacific = new boolean[n][m];
-    boolean[][] atlantic = new boolean[n][m];
-    for(int i=0; i<n; i++){
-        dfs(matrix, pacific, Integer.MIN_VALUE, i, 0);
-        dfs(matrix, atlantic, Integer.MIN_VALUE, i, m-1);
+    for (int j = 0; j < matrix[0].length; j++){
+        pacific[0][j] = true;
+        atlantic[matrix.length-1][j] = true;
     }
-    for(int i=0; i<m; i++){
-        dfs(matrix, pacific, Integer.MIN_VALUE, 0, i);
-        dfs(matrix, atlantic, Integer.MIN_VALUE, n-1, i);
+    for (int i = 0; i < matrix.length; i++){
+        explore(pacific, matrix, i, 0);
+        explore(atlantic, matrix, i, matrix[0].length-1);
     }
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < m; j++)
-            if (pacific[i][j] && atlantic[i][j])
-                res.add(new int[] {i, j});
+    for (int j = 0; j < matrix[0].length; j++){
+        explore(pacific, matrix, 0, j);
+        explore(atlantic, matrix, matrix.length-1, j);
+    }
+    for (int i = 0; i < matrix.length; i++){
+        for (int j = 0; j < matrix[0].length; j++){
+            if (pacific[i][j] && atlantic[i][j] == true)
+                res.add(new int[]{i,j});
+        }
+    }
     return res;
+
 }
-
-int[][] dir = new int[][]{{0,1},{0,-1},{1,0},{-1,0}};
-
-public void dfs(int[][]matrix, boolean[][]visited, int height, int x, int y){
-    int n = matrix.length, m = matrix[0].length;
-    if(x<0 || x>=n || y<0 || y>=m || visited[x][y] || matrix[x][y] < height)
-        return;
-    visited[x][y] = true;
-    for(int[] d:dir){
-        dfs(matrix, visited, matrix[x][y], x+d[0], y+d[1]);
+private void explore(boolean[][] grid, int[][] matrix, int i, int j){
+    grid[i][j] = true;
+    for (int d = 0; d < dx.length; d++){
+        if (i+dy[d] < grid.length && i+dy[d] >= 0 &&
+            j + dx[d] < grid[0].length && j + dx[d] >= 0 &&
+            grid[i+dy[d]][j+dx[d]] == false && matrix[i+dy[d]][j+dx[d]] >= matrix[i][j])
+                explore(grid, matrix, i+dy[d], j+dx[d]);
     }
 }
 ```
