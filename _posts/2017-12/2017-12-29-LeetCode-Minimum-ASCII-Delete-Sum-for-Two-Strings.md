@@ -12,6 +12,7 @@ excerpt_separator: "<!--more-->"
 
 ### Question Definition
 Given two strings s1, s2, find the lowest ASCII sum of deleted characters to make two strings equal.
+<!--more-->
 
 Example 1:
 ```
