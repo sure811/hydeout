@@ -48,8 +48,8 @@ public List<int[]> pacificAtlantic(int[][] matrix) {
     }
 
     int n = matrix.length, m = matrix[0].length;
-    boolean[][]pacific = new boolean[n][m];
-    boolean[][]atlantic = new boolean[n][m];
+    boolean[][] pacific = new boolean[n][m];
+    boolean[][] atlantic = new boolean[n][m];
     for(int i=0; i<n; i++){
         dfs(matrix, pacific, Integer.MIN_VALUE, i, 0);
         dfs(matrix, atlantic, Integer.MIN_VALUE, i, m-1);
@@ -65,7 +65,7 @@ public List<int[]> pacificAtlantic(int[][] matrix) {
     return res;
 }
 
-int[][]dir = new int[][]{{0,1},{0,-1},{1,0},{-1,0}};
+int[][] dir = new int[][]{{0,1},{0,-1},{1,0},{-1,0}};
 
 public void dfs(int[][]matrix, boolean[][]visited, int height, int x, int y){
     int n = matrix.length, m = matrix[0].length;
