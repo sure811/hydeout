@@ -19,6 +19,7 @@ A chess knight has 8 possible moves it can make, as illustrated below. Each move
 Each time the knight is to move, it chooses one of eight possible moves uniformly at random (even if the piece would go off the chessboard) and moves there.
 
 The knight continues moving until it has made exactly K moves or has moved off the chessboard. Return the probability that the knight remains on the board after it has stopped moving.
+<!--more-->
 
 Example:
 ```
