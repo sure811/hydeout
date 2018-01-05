@@ -39,4 +39,20 @@ Explanation: There are six substrings "z", "a", "b", "za", "ab", "zab" of string
 ```
 ### Java Solution
 ```java
+public int findSubstringInWraproundString(String p) {
+    int[] cnt = new int[26];
+    int len = 0;
+    for (int i = 0; i < p.length(); ++i) {
+        if (i > 0 && (p.charAt(i) == p.charAt(i - 1) + 1 || p.charAt(i - 1) - p.charAt(i) == 25)) {
+            ++len;
+        } else {
+            len = 1;
+        }
+        cnt[p.charAt(i) - 'a'] = Math.max(cnt[p.charAt(i) - 'a'], len);
+    }
+    int result = 0;
+    for(int count : cnt)
+        result += count;
+    return result;
+}
 ```
