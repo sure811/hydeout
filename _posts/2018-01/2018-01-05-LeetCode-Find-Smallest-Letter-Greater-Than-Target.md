@@ -54,4 +54,20 @@ Note:
 3. target is a lowercase letter.
 ### Java Solution
 ```java
+public char nextGreatestLetter(char[] letters, char target) {
+    int start = 0;
+    int end = letters.length - 1;
+    while(start <= end){
+        int mid = (start + end) / 2;
+        if(letters[mid] == target){
+            while(++mid < letters.length && letters[mid] == target);
+            return letters[mid % letters.length];
+        }
+        if(letters[mid] < target)
+            start = mid + 1;
+        else
+            end = mid - 1;
+    }
+    return letters[start % letters.length];
+}
 ```
