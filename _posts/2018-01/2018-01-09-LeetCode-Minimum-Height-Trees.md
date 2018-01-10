@@ -53,34 +53,28 @@ return `[3, 4]`
 
 ### Java Solution
 ```java
-class Solution {
-    Map<Integer, Linked<Integer>> map = new HashMap<>();
-    public List<Integer> findMinHeightTrees(int n, int[][] edges) {
-        for(int[] edge : edges){
-            map.putIfAbsent(edge[0], new LinkedList<>());
-            map.put(edge[0]).add(edge[1]);
-            map.putIfAbsent(edge[1], new LinkedList<>());
-            map.put(edge[1]).add(edge[0]);
-        }
-        int min = Integer.MAX_VALUE;
-        List<Integer> result = new LinkedList<>();
-        for(int i = 0; i < n; i++){
-            int height = findHeight(n, edges, i);
-            if(height < min){
-                result.clear();
-                result.add(i);
-                min = height;
-            }else if(height == min){
-                result.add(i);
-            }
-        }
-        return result;
+public List<Integer> findMinHeightTrees(int n, int[][] edges) {
+    if (n == 1) return Collections.singletonList(0);
+    List<Integer> leaves = new ArrayList<>();
+    List<Set<Integer>> adj = new ArrayList<>(n);
+    for (int i = 0; i < n; ++i) adj.add(new HashSet<>());
+    for (int[] edge : edges) {
+        adj.get(edge[0]).add(edge[1]);
+        adj.get(edge[1]).add(edge[0]);
     }
-
-    private int findHeight(int n, int root){
-        Queue<Integer> queue = new LinkedList<>();
-        boolean[] visited = new boolean[n];
-
+    for (int i = 0; i < n; ++i) {
+        if (adj.get(i).size() == 1) leaves.add(i);
     }
+    while (n > 2) {
+        n -= leaves.size();
+        List<Integer> newLeaves = new ArrayList<>();
+        for (int i : leaves) {
+            int t = adj.get(i).iterator().next();
+            adj.get(t).remove(i);
+            if (adj.get(t).size() == 1) newLeaves.add(t);
+        }
+        leaves = newLeaves;
+    }
+    return leaves;
 }
 ```
