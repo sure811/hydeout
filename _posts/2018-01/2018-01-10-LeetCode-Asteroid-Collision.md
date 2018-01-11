@@ -57,4 +57,20 @@ The length of asteroids will be at most 10000.
 Each asteroid will be a non-zero integer in the range `[-1000, 1000]`.
 ### Java Solution
 ```java
+public int[] asteroidCollision(int[] asteroids) {
+    LinkedList<Integer> s = new LinkedList<>();
+    for (int i : asteroids) {
+        if (i > 0)
+            s.add(i);
+        else {
+            while (!s.isEmpty() && s.getLast() > 0 && s.getLast() < -i)
+                s.pollLast();
+            if (!s.isEmpty() && s.getLast() == -i)
+                s.pollLast();
+            else if (s.isEmpty() || s.getLast() < 0)
+                s.add(i);
+        }
+    }
+    return s.stream().mapToInt(i->i).toArray();
+}
 ```
