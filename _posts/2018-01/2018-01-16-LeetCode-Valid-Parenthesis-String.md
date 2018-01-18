@@ -36,4 +36,26 @@ Output: True
 1. The string size will be in the range `[1, 100]`.
 ### Java Solution
 ```java
+public boolean checkValidString(String s) {
+    Deque<Integer> left = new ArrayDeque<>();
+    Deque<Integer> star = new ArrayDeque<>();
+
+    for(int i = 0; i < s.length(); i++){
+        char c = s.charAt(i);
+        if(c == '*') star.push(i);
+        else if(c == '(') left.push(i);
+        else {
+            if(left.isEmpty() && star.isEmpty()) return false;
+            if(!left.isEmpty())
+                left.poll();
+            else
+                star.poll();
+        }
+    }
+    if(left.size() > star.size()) return false;
+    while(!left.isEmpty()){
+        if(left.poll() > star.poll()) return false;
+    }
+    return true;
+}
 ```
