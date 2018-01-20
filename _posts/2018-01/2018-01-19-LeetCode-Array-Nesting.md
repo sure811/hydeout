@@ -1,0 +1,55 @@
+---
+layout: post
+title: LeetCode - Array Nesting
+categories:
+    - LeetCode(Second)
+tags:
+    - LeetCode(Second)
+    - Medium
+    - Array
+excerpt_separator: "<!--more-->"
+---
+
+### Question Definition
+A zero-indexed array A of length N contains all integers from 0 to N-1. Find and return the longest length of set S, where `S[i] = {A[i], A[A[i]], A[A[A[i]]], ... }` subjected to the rule below.
+
+Suppose the first element in S starts with the selection of element `A[i]` of index = i, the next element in S should be `A[A[i]]`, and then `A[A[A[i]]]…` By that analogy, we stop adding right before a duplicate element occurs in S.
+<!--more-->
+
+**Example 1:**
+```
+Input: A = [5,4,0,3,1,6,2]
+Output: 6
+Explanation:
+A[0] = 5, A[1] = 4, A[2] = 0, A[3] = 3, A[4] = 1, A[5] = 6, A[6] = 2.
+
+One of the longest S[K]:
+S[0] = {A[0], A[5], A[6], A[2]} = {5, 6, 2, 0}
+```
+**Note:**
+1. N is an integer within the range [1, 20,000].
+2. The elements of A are all distinct.
+3. Each element of A is an integer within the range [0, N-1].
+### My Java Solution
+```java
+public int arrayNesting(int[] nums) {
+    int max = 0;
+    for(int i = 0; i < nums.length; i++){
+        if(nums[i] >= 0){
+            int cur = 0;
+            int index = nums[i];
+            while(true){
+                int temp = nums[index];
+                nums[index] = nums[index] == 0 ? -1 : -nums[index];
+                index = temp;
+                if(index >= 0)
+                    cur++;
+                else break;
+            }
+            if(cur > max)
+                max = cur;
+        }
+    }
+    return max;
+}
+```
