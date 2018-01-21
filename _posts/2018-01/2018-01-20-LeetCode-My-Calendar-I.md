@@ -34,6 +34,46 @@ The third event can be booked, as the first event takes every time less than 20,
 **Note:**
 * The number of calls to MyCalendar.book per test case will be at most 1000.
 * In calls to MyCalendar.book(start, end), start and end are integers in the range `[0, 10^9]`.
-### Java Solution
+### My Java Solution
 ```java
+class MyCalendar {
+    private TreeMap<Integer, Integer> map;
+    public MyCalendar() {
+        map = new TreeMap<>();
+    }
+
+    public boolean book(int start, int end) {
+        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+            if(entry.getKey() >= end)
+                break;
+            if((start >= entry.getKey() && start < entry.getValue())
+              || (end > entry.getKey() && end <= entry.getValue())
+              || (start <= entry.getKey() && end >= entry.getValue()))
+                return false;
+        }
+        map.put(start, end);
+        return true;
+    }
+}
+```
+### Best Java Solution
+```
+class MyCalendar {
+
+    TreeMap<Integer, Integer> calendar;
+
+    public MyCalendar() {
+        calendar = new TreeMap<>();
+    }
+
+    public boolean book(int start, int end) {
+        Integer floorKey = calendar.floorKey(start);
+        if (floorKey != null && calendar.get(floorKey) > start) return false;
+        Integer ceilingKey = calendar.ceilingKey(start);
+        if (ceilingKey != null && ceilingKey < end) return false;
+
+        calendar.put(start, end);
+        return true;
+    }
+}
 ```
