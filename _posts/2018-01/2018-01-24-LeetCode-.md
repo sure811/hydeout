@@ -6,7 +6,7 @@ categories:
 tags:
     - LeetCode(Second)
     - Medium
-    - Array
+    - Dynamic Programming
 excerpt_separator: "<!--more-->"
 ---
 
