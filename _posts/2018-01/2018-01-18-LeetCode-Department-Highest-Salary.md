@@ -6,6 +6,7 @@ categories:
 tags:
     - LeetCode
     - Medium
+    - Sql
 excerpt_separator: "<!--more-->"
 ---
 
@@ -39,5 +40,13 @@ Write a SQL query to find employees who have the highest salary in each of the d
 +------------+----------+--------+
 
 ### Java Solution
-```java
+```sql
+SELECT D.Name AS Department ,E.Name AS Employee ,E.Salary
+FROM
+	Employee E,
+	(SELECT DepartmentId,max(Salary) as max FROM Employee GROUP BY DepartmentId) T,
+	Department D
+WHERE E.DepartmentId = T.DepartmentId
+  AND E.Salary = T.max
+  AND E.DepartmentId = D.id
 ```
