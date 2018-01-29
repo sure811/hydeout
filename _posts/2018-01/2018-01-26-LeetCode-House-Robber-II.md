@@ -19,4 +19,21 @@ After robbing those houses on that street, the thief has found himself a new pla
 Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.
 ### Java Solution
 ```java
+class Solution {
+    public int rob(int[] nums) {
+        if (nums.length <= 1) return nums.length == 0 ? 0 : nums[0];
+        return Math.max(rob(nums, 0, nums.length - 1), rob(nums, 1, nums.length));
+    }
+
+    private int rob(int[] nums, int left, int right) {
+        if (right - left <= 1) return nums[left];
+        int[] dp = new int[right];
+        dp[left] = nums[left];
+        dp[left + 1] = Math.max(nums[left], nums[left + 1]);
+        for (int i = left + 2; i < right; ++i) {
+            dp[i] = Math.max(nums[i] + dp[i - 2], dp[i - 1]);
+        }
+        return dp[right - 1];
+    }
+}
 ```
