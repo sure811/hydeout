@@ -66,7 +66,7 @@ public int[][] updateMatrix(int[][] matrix) {
         }
     }
 
-
+    int[][] dirs = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
 
     while (!queue.isEmpty()) {
         int[] cell = queue.poll();
