@@ -43,7 +43,7 @@ public double knightProbability(int N, int K, int r, int c) {
     Arrays.fill(temp, 1);
     Arrays.fill(dp, temp);
 
-    int[][] dirs = {{-1,-2},{-2,-1},{-2,1},{-1,2},{1,2},{2,1},{2,-1},{1,-2}};
+    int[][] dirs = { {-1,-2},{-2,-1},{-2,1},{-1,2},{1,2},{2,1},{2,-1},{1,-2} };
 
     for (int m = 0; m < K; ++m) {
         double[][] t = new double[N][N];
