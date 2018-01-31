@@ -31,7 +31,7 @@ Then, delete 2 to earn 2 points. 6 total points are earned.
 Input: nums = [2, 2, 3, 3, 3, 4]
 Output: 9
 Explanation:
-Delete 3 to earn 3 points, deleting both 2's and the 4.
+Delete 3 to earn 3 points, deleting both 2s and the 4.
 Then, delete 3 again to earn 3 points, and 3 again to earn 3 points.
 9 total points are earned.
 ```
