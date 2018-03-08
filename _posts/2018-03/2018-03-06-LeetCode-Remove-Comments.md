@@ -78,4 +78,45 @@ Explanation: The original source string is "a/*comment\nline\nmore_comment*/b", 
 * There are no single-quote, double-quote, or control characters in the source code.
 ### Java Solution
 ```java
+public List<String> removeComments(String[] source) {
+    int status = 0; // 0: code 1: line comment 2: block comment
+    List<String> result = new LinkedList<>();
+    String head = "";
+    for(String s : source){
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < s.length(); i++){
+            if(status == 0){
+                if(s.charAt(i) == '/' && i != s.length() - 1 && (s.charAt(i + 1) == '/' || s.charAt(i + 1) == '*')){
+                    if(s.charAt(i + 1) == '/'){
+                        status = 1;
+                    } else {
+                        head = sb.toString();
+                        sb = new StringBuilder();
+                        status = 2;
+                    }
+                    i++;
+                } else
+                    sb.append(s.charAt(i));
+            }else if(status == 1){
+
+            }else if(status == 2) {
+                if(s.charAt(i) == '*' && i != s.length() - 1 && s.charAt(i + 1) == '/'){
+                    if(head.length() > 0){
+                        sb.append(head);
+                        head = "";
+                    }
+                    i++;
+                    status = 0;
+                }
+            }
+        }
+        if(sb.length() > 0){
+            result.add(sb.toString());
+        }
+
+        if(status == 1)
+            status = 0;
+    }
+    return result;
+}
 ```
