@@ -29,4 +29,34 @@ Output: [1,2,3,4]
 3. Absolute value of elements in the array and x will not exceed 104
 ### Java Solution
 ```java
+public List<Integer> findClosestElements(int[] arr, int k, int x) {
+    int index =  -1;
+    int min = Integer.MAX_VALUE;
+    for(int i = 0; i < arr.length; i++){
+        if(Math.abs(arr[i] - x) < min){
+            min = Math.abs(arr[i] - x);
+            index = i;
+        }
+    }
+    List<Integer> result = new LinkedList<>();
+    if(index == -1){
+        if(arr[0] < x) index = arr.length;
+    }else
+        result.add(arr[index]);
+    int left = index - 1;
+    int right = index + 1;
+    while(result.size() != k){
+        if(left < 0) result.add(arr[right++]);
+        else if(right >= arr.length) result.add(arr[left--]);
+        else{
+            if(Math.abs(arr[left] - x) <= Math.abs(arr[right] - x)){
+                result.add(arr[left--]);
+            }else if(Math.abs(arr[left] - x) > Math.abs(arr[right] - x)){
+                result.add(arr[right++]);
+            }
+        }
+    }
+    Collections.sort(result);
+    return result;
+}
 ```
