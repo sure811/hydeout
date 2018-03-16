@@ -41,4 +41,24 @@ Number at the 2nd position (i=2) is 1, and i (i=2) is divisible by 1.
 
 ### Java Solution
 ```java
+public int countArrangement(int N) {
+    boolean[] visited = new boolean[N + 1];
+
+    return helper(1, visited);
+}
+
+private int helper(int index, boolean[] visited){
+    if(index == visited.length){
+        return 1;
+    }
+    int result = 0;
+    for(int i = 1; i < visited.length; i++) {
+        if(!visited[i] && (index % i == 0 || i % index == 0)){
+            visited[i] = true;
+            result += helper(index + 1, visited);
+            visited[i] = false;
+        }
+    }
+    return result;
+}
 ```
