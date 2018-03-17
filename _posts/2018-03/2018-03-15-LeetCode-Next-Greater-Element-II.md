@@ -25,4 +25,16 @@ The second 1's next greater number needs to search circularly, which is also 2.
 **Note:** The length of given array won't exceed 10000.
 ### Java Solution
 ```java
+public int[] nextGreaterElements(int[] nums) {
+    int[] results = new int[nums.length];
+    for(int i = 0; i < results.length; i++){
+        int j = (i + 1) % nums.length;
+        while(j != i && nums[i] >= nums[j]) j = (j + 1) % nums.length;
+        if(j == i)
+            results[i] = -1;
+        else
+            results[i] = nums[j];
+    }
+    return results;
+}
 ```
