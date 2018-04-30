@@ -27,5 +27,29 @@ s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
 ```
 ### Java Solution
 ```java
-
+public String decodeString(String s) {
+    Deque<String> strings = new ArrayDeque<>();
+    Deque<Integer> nums = new ArrayDeque<>();
+    String res = "", t = "";
+    int cnt = 0;
+    for (int i = 0; i < s.length(); ++i) {
+        if (s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+            cnt = 10 * cnt + (int)(s.charAt(i) - '0');
+        } else if (s.charAt(i) == '[') {
+            nums.push(cnt);
+            strings.push(t);
+            cnt = 0;
+            t = "";
+        } else if (s.charAt(i) == ']') {
+            int k = nums.poll();
+            String top = strings.poll();
+            for (int j = 0; j < k; ++j) top += t;
+            t = top;
+        } else {
+            t += s.charAt(i);
+        }
+    }
+    System.out.println(strings.size());
+    return strings.isEmpty() ? t : strings.peek();
+}
 ```
